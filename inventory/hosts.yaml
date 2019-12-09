@@ -1,0 +1,47 @@
+---
+# hub1:
+#     hostname: 172.24.51.191
+#     groups:
+#         - routers
+#     data:
+#         role: hub
+#         type: router
+
+# hub2:
+#     hostname: 172.24.51.192
+#     groups:
+#           - routers
+#     data:
+#         role: hub
+#         type: router
+
+# spoke1:
+#     hostname: 172.24.51.194
+#     groups:
+#           - routers
+#     data:
+#         role: spoke
+#         type: router
+
+# spoke2:
+#     hostname: 172.24.51.195
+#     groups:
+#           - routers
+#     data:
+#         role: spoke
+#         type: router
+
+sandbox:
+    hostname: ios-xe-mgmt.cisco.com
+    username: developer
+    password: C1sco12345
+    port: 8181
+    platform: ios
+    data:
+        role: sandbox
+        type: router
+    connection_options: 
+        napalm:
+            extras:
+                optional_args: 
+                    global_delay_factor: 4

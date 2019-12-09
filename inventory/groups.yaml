@@ -1,0 +1,13 @@
+---
+routers:
+    platform: ios
+    username: cisco
+    password: cisco
+    data: 
+        domain: vpnlab.fi
+    connection_options: 
+        napalm:
+            extras:
+                optional_args:
+                    dest_file_system: flash0 
+                    global_delay_factor: 4
