@@ -1,3 +1,3 @@
-# Network Automation on Traditional Cisco Routers
+# Network Automation on Cisco IOS Routers
 
-This repository provide a script for automating network configurations on Cisco IOS devices.
+This repository provide a script for automating network configurations on tradtional Cisco IOS devices.
