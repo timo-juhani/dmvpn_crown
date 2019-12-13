@@ -31,17 +31,24 @@
 #         role: spoke
 #         type: router
 
-sandbox:
+sandbox_spoke:
     hostname: ios-xe-mgmt.cisco.com
     username: developer
     password: C1sco12345
     port: 8181
     platform: ios
     data:
-        role: sandbox
+        role: spoke
         type: router
-    connection_options: 
-        napalm:
-            extras:
-                optional_args: 
-                    global_delay_factor: 4
+        site: sandbox_spoke
+
+sandbox_hub:
+    hostname: ios-xe-mgmt.cisco.com
+    username: developer
+    password: C1sco12345
+    port: 8181
+    platform: ios
+    data:
+        role: hub
+        type: router
+        site: sandbox_hub

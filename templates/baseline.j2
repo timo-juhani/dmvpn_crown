@@ -1,3 +1,27 @@
+{# Global configuration #}
 service tcp-keepalives-in
 service tcp-keepalives-out
 service timestamps log datetime msec localtime show-timezone
+
+{# Interfaces #}
+interface loopback 200
+  ip address 192.168.254.253 255.255.255.255
+
+{# Crypto settings #}
+crypto ikev2 keyring IPSEC
+ peer IPSEC-DMVPN
+  address 0.0.0.0 0.0.0.0
+  pre-shared-key ipsec
+
+crypto ikev2 profile IPSEC
+ match identity remote address 0.0.0.0 
+ authentication remote pre-share
+ authentication local pre-share
+ keyring local IPSEC
+
+crypto ipsec transform-set DMVPN-AES256 esp-aes 256 esp-sha-hmac 
+ mode transport
+
+crypto ipsec profile IPSEC
+ set transform-set DMVPN-AES256 
+ set ikev2-profile IPSEC

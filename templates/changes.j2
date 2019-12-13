@@ -1,5 +1,9 @@
-no interface loopback 200
+{# Deleted configuration #}
+no vrf definition blue
+no vrf definition red
+no int tun 100
+no int tun 101
+no router bgp 65010
+no router bgp 65011
 
-interface loopback 201
-    description {{ host }} Loopback 201
-    ip address 192.168.254.254 255.255.255.255
+{# Changed configuration #}

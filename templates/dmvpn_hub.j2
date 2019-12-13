@@ -1,0 +1,45 @@
+{# For every VRF render the configuration #}
+
+{% for v in vrfs %}
+
+  {# VRF Template #}
+  vrf definition {{ v.vrf_name }} 
+  rd {{ v.rd }}
+  address-family ipv4
+    route-target export {{ v.rd }}
+    route-target import {{ v.rd }}
+
+  {# Tunnel Template #}
+  interface Tunnel{{ v.tunnel_id }}
+    vrf forwarding {{ v.vrf_name }} 
+    ip address {{ v.tunnel_ip }} 255.255.255.0
+    no ip redirects
+    ip mtu 1400
+    ip nhrp network-id {{ v.tunnel_id }}
+    ip nhrp redirect
+    ip tcp adjust-mss 1360
+    tunnel source Loopback 200
+    tunnel mode gre multipoint
+    tunnel key {{ v.tunnel_id }}
+    tunnel path-mtu-discovery
+    tunnel protection ipsec profile {{ v.ipsec_profile }} shared
+
+{% endfor %}
+
+router bgp {{ asn }}
+
+{% for v in vrfs %}
+    bgp listen range {{ v.tunnel_net }}/24 peer-group SPOKE-{{ v.vrf_name }}
+
+    address-family ipv4 vrf {{ v.vrf_name }}
+        neighbor SPOKE-{{ v.vrf_name }} peer-group
+        neighbor SPOKE-{{ v.vrf_name }} remote-as {{ peer_asn }}
+        neighbor SPOKE-{{ v.vrf_name }} password STRONGPASSWORD
+        neighbor SPOKE-{{ v.vrf_name }} route-reflector-client
+        neighbor SPOKE-{{ v.vrf_name }} allowas-in
+        neighbor SPOKE-{{ v.vrf_name }} maximum-prefix 1000 90 warning-only
+    exit-address-family
+
+{% endfor %}
+
+end

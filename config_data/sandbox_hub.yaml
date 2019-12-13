@@ -1,0 +1,17 @@
+---
+asn: 65010
+peer_asn: 65011
+vrfs:
+    - vrf_name: BLUE
+      rd: 100:100
+      tunnel_id: 100
+      tunnel_net: 10.100.1.0
+      tunnel_ip: 10.100.1.1
+      ipsec_profile: IPSEC
+
+    - vrf_name: RED
+      rd: 101:101
+      tunnel_id: 101
+      tunnel_ip: 10.101.1.1
+      tunnel_net: 10.101.1.0
+      ipsec_profile: IPSEC
