@@ -1,7 +1,9 @@
 ---
-
 asn: 65011
 peer_asn: 65010
+loopback200_ip: 10.50.1.2
+loopback200_mask: 255.255.255.255
+
 vrfs:
     - vrf_name: BLUE
       rd: 100:100

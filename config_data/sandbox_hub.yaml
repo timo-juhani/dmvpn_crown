@@ -1,6 +1,9 @@
 ---
 asn: 65010
 peer_asn: 65011
+lo_200_ip: 10.50.1.1
+lo_200_mask: 255.255.255.255
+
 vrfs:
     - vrf_name: BLUE
       rd: 100:100

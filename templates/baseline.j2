@@ -5,7 +5,7 @@ service timestamps log datetime msec localtime show-timezone
 
 {# Interfaces #}
 interface loopback 200
-  ip address 192.168.254.253 255.255.255.255
+  ip address {{ lo_200_ip }} {{ lo_200_mask }}
 
 {# Crypto settings #}
 crypto ikev2 keyring IPSEC
