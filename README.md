@@ -6,9 +6,9 @@ This repository concentrates on automating the deployment of a multi-VRF DMVPN n
 
 To run the code:
 - Clone the repository
-- Launch a Python 3.x virtual enviroment (VENV): ´python -m venv .´
-- Install dependencies: ´pip3 install -r requirements.txt´
-- Adjust ´config_data´ with your own variables
+- Launch a Python 3.x virtual enviroment (VENV): ```python -m venv .```
+- Install dependencies: ```pip3 install -r requirements.txt```
+- Adjust ```config_data``` with your own variables
 - Execute the scripts:
-    - ´python3 deploy_hubs.py´
-    - ´python3 deploy_spokes.py´
+    - ```python3 deploy_hubs.py```
+    - ```python3 deploy_spokes.py```
