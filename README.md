@@ -1,6 +1,6 @@
 #  DMVPN Configuration with Nornir 
 
-![nornir](nornir.png){:height="50%" width="50%"}
+<img src="nornir.png" width="100">
 
 This repository concentrates on automating the deployment of a multi-VRF DMVPN network. It's common for these networks to grow in number of spokes and VRFs. Sometimes so much that manageability takes a hit. Therefore, modeling the deployment as Infra as Code helps to mitigate these scaling issues and avoid mistakes when deploying or changing something in the existing deployment. It's also easy to re-run the scripts to make sure all configuration is as it should. Checking this manually each device at a time is time consuming to say the least.
 
