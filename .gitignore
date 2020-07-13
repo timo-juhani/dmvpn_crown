@@ -1,0 +1,6 @@
+# Ignore VENV files and folders
+bin/
+lib/
+lib64
+pyvenv.cfg
+share/
