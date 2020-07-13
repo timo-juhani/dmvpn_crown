@@ -1,0 +1,12 @@
+# Ignore VENV files and folders
+bin/
+lib/
+lib64
+pyvenv.cfg
+share/
+
+# Ignore NORNIR log
+nornir.log
+
+# Ignore __pycache__
+__pycache__/
