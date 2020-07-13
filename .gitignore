@@ -7,3 +7,6 @@ share/
 
 # Ignore NORNIR log
 nornir.log
+
+# Ignore __pycache__
+__pycache__/
