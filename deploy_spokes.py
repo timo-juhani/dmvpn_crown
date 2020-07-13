@@ -5,7 +5,7 @@ import yaml
 import jinja2
 
 
-def pushBaseline(task):
+def baseline_configuration(task):
     # Open the configuration file
     with open(f'config_data/{task.host["site"]}.yaml') as file:
         config_data = yaml.load(file, Loader=yaml.FullLoader)
@@ -16,7 +16,6 @@ def pushBaseline(task):
     t = "baseline.j2"
     template = templateEnv.get_template(t)
     config = template.render(config_data)
-    print(config)
 
     # Deploy the configuration
     task.run(task=networking.napalm_configure,
@@ -25,8 +24,7 @@ def pushBaseline(task):
              configuration=config)
 
 
-def pushDmvpnSpoke(task):
-
+def spoke_configuration(task):
     # Open the configuration file
     with open(f'config_data/{task.host["site"]}.yaml') as file:
         config_data = yaml.load(file, Loader=yaml.FullLoader)
@@ -49,19 +47,12 @@ def pushDmvpnSpoke(task):
 
 nr = InitNornir(config_file="config.yaml")
 spokes = nr.filter(type="router", role="spoke")
-
-print_title("Gathering the facts.")
-
-# Gather facts about the devices
-# r = spokes.run(task=networking.napalm_get, getters=["facts"])
-# print_result(r)
-
 print_title("Configuring the spokes")
 
 # Apply the baseline configuration
-r = spokes.run(task=pushBaseline)
+r = spokes.run(task=baseline_configuration)
 print_result(r)
 
 # Push the DMVPN spoke configurations
-r = spokes.run(task=pushDmvpnSpoke)
+r = spokes.run(task=spoke_configuration)
 print_result(r)

@@ -5,7 +5,7 @@ import yaml
 import jinja2
 
 
-def pushBaseline(task):
+def baseline_configuration(task):
     # Open the configuration file
     with open(f'config_data/{task.host["site"]}.yaml') as file:
         config_data = yaml.load(file, Loader=yaml.FullLoader)
@@ -16,7 +16,6 @@ def pushBaseline(task):
     t = "baseline.j2"
     template = templateEnv.get_template(t)
     config = template.render(config_data)
-    print(config)
 
     # Deploy the configuration
     task.run(task=networking.napalm_configure,
@@ -25,7 +24,7 @@ def pushBaseline(task):
              configuration=config)
 
 
-def pushDmvpnHub(task):
+def hub_configuration(task):
 
     # Open the configuration file
     with open(f'config_data/{task.host["site"]}.yaml') as file:
@@ -49,19 +48,12 @@ def pushDmvpnHub(task):
 
 nr = InitNornir(config_file="config.yaml")
 hubs = nr.filter(type="router", role="hub")
-
-print_title("Gathering the facts.")
-
-# Gather facts about the devices
-# r = routers.run(task=networking.napalm_get, getters=["facts"])
-# print_result(r)
-
 print_title("Configuring the hubs")
 
 # Apply the baseline configuration
-r = hubs.run(task=pushBaseline)
+r = hubs.run(task=baseline_configuration)
 print_result(r)
 
 # Push the DMVPN hub configurations
-r = hubs.run(task=pushDmvpnHub)
+r = hubs.run(task=hub_configuration)
 print_result(r)
