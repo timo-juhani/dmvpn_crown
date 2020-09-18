@@ -1,20 +1,19 @@
----
-asn: 65010
-peer_asn: 65011
-lo_200_ip: 10.50.1.1
-lo_200_mask: 255.255.255.255
-
-vrfs:
-  - vrf_name: BLUE
-    rd: 100:100
-    tunnel_id: 100
-    tunnel_net: 10.100.1.0
-    tunnel_ip: 10.100.1.1
-    ipsec_profile: IPSEC
-
-  - vrf_name: RED
-    rd: 101:101
-    tunnel_id: 101
-    tunnel_ip: 10.101.1.1
-    tunnel_net: 10.101.1.0
-    ipsec_profile: IPSEC
+conf:
+  bgp:
+    - asn: 65010
+      lo_200_ip: 10.50.1.1
+      lo_200_mask: 255.255.255.255
+      peer_asn: 65011
+  vrfs:
+    - ipsec_profile: IPSEC
+      rd: 100:100
+      tunnel_id: 100
+      tunnel_ip: 10.100.1.1
+      tunnel_net: 10.100.1.0
+      vrf_name: BLUE
+    - ipsec_profile: IPSEC
+      rd: 101:101
+      tunnel_id: 101
+      tunnel_ip: 10.101.1.1
+      tunnel_net: 10.101.1.0
+      vrf_name: RED

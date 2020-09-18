@@ -5,7 +5,7 @@ service timestamps log datetime msec localtime show-timezone
 
 {# Interfaces #}
 interface loopback 200
-  ip address {{ lo_200_ip }} {{ lo_200_mask }}
+  ip address {{ conf["bgp"][0]["lo_200_ip"] }} {{ conf["bgp"][0]["lo_200_mask"] }}
 
 {# Crypto settings #}
 crypto ikev2 keyring IPSEC
