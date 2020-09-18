@@ -1,6 +1,6 @@
 {# For every VRF render the configuration #}
 
-{% for v in vrfs %}
+{% for v in conf["vrfs"] %}
 
   {# VRF Template #}
   vrf definition {{ v.vrf_name }} 
@@ -26,14 +26,14 @@
 
 {% endfor %}
 
-router bgp {{ asn }}
+router bgp {{ conf["bgp"][0]["asn"] }}
 
-{% for v in vrfs %}
+{% for v in conf["vrfs"] %}
 
   address-family ipv4 vrf {{ v.vrf_name }}
-    neighbor {{ v.peer_ip }} remote-as {{ peer_asn }}
-    neighbor {{ v.peer_ip }} password STRONGPASSWORD
-    neighbor {{ v.peer_ip }} activate
+    neighbor {{ v.tunnel_hub }} remote-as {{ conf["bgp"][0]["peer_asn"] }}
+    neighbor {{ v.tunnel_hub }} password STRONGPASSWORD
+    neighbor {{ v.tunnel_hub }} activate
   exit-address-family
 
 {% endfor %}
