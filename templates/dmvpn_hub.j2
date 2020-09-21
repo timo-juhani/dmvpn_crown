@@ -18,7 +18,7 @@
     ip nhrp network-id {{ v.tunnel_id }}
     ip nhrp redirect
     ip tcp adjust-mss 1360
-    tunnel source Loopback 200
+    tunnel source Loopback {{ conf["bgp"][0]["lo_id"] }}
     tunnel mode gre multipoint
     tunnel key {{ v.tunnel_id }}
     tunnel path-mtu-discovery
