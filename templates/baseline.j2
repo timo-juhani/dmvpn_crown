@@ -4,8 +4,8 @@ service tcp-keepalives-out
 service timestamps log datetime msec localtime show-timezone
 
 {# Interfaces #}
-interface loopback 200
-  ip address {{ conf["bgp"][0]["lo_200_ip"] }} {{ conf["bgp"][0]["lo_200_mask"] }}
+interface Loopback {{ conf["bgp"][0]["lo_id"] }}
+  ip address {{ conf["bgp"][0]["lo_ip"] }} {{ conf["bgp"][0]["lo_mask"] }}
 
 {# Crypto settings #}
 crypto ikev2 keyring IPSEC
